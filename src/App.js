@@ -21,7 +21,7 @@ function App() {
     }
   )
 
-  console.log(formData);
+  // console.log(formData);
 
   function changeHandler(event){
     
@@ -34,11 +34,18 @@ function App() {
 
   }
 
-  return (
-    <div>
-      <form>
+  function submitHandler(event) {
+    event.preventDefault();
 
-      <label htmlFor='firstName'>First Name</label>
+    console.log("Finally printing the value of Form Data:");
+    console.log(formData)
+  }
+
+  return (
+    <div className='flex justify-center mt-2'>
+      <form onSubmit={submitHandler} className=' p-4  border-2 rounded-md w-1/2 shadow-lg'>
+
+      <label htmlFor='firstName' className=''>First Name</label>
       <br/>
       <input
         type='text'
@@ -47,6 +54,7 @@ function App() {
         id='firstName' 
         onChange={changeHandler}
         value={formData.firstName}
+        className='border-2 rounded-md hover:border-[#4278C0] w-full '
       />
 
       <br />
@@ -60,6 +68,7 @@ function App() {
         id='lastName' 
         onChange={changeHandler}
         value={formData.lastName}
+        className='border-2 rounded-md hover:border-[#4278C0] w-full '
       />
 
       <br />
@@ -73,6 +82,7 @@ function App() {
         id='email' 
         onChange={changeHandler}
         value={formData.email}
+        className='border-2 rounded-md hover:border-[#4278C0] w-full '
       />
 
       <br />
@@ -84,6 +94,7 @@ function App() {
         id='country'
         value={formData.country}
         onChange={changeHandler}
+        className='border-2 rounded-md hover:border-[#4278C0] w-full '
       >
         <option value="select">select</option>
         <option value="india">india</option>
@@ -102,6 +113,7 @@ function App() {
         id='streetAddress' 
         onChange={changeHandler}
         value={formData.streetAddress}
+        className='border-2 rounded-md hover:border-[#4278C0] w-full '
       />
 
       <br />
@@ -115,6 +127,7 @@ function App() {
         id='city' 
         onChange={changeHandler}
         value={formData.city}
+        className='border-2 rounded-md hover:border-[#4278C0] w-full '
       />
 
       <br />
@@ -128,6 +141,7 @@ function App() {
         id='state' 
         onChange={changeHandler}
         value={formData.state}
+        className='border-2 rounded-md hover:border-[#4278C0] w-full '
       />
 
       <br />
@@ -141,56 +155,72 @@ function App() {
         id='zip' 
         onChange={changeHandler}
         value={formData.zip}
+        className='border-2 rounded-md hover:border-[#4278C0] w-full '
       />
 
+      <br />
       <br />
 
       <fieldset>
         <legend>By Email</legend>
 
-          <input 
-            type='checkbox'
-            name='comments'
-            id='comments'
-            onChange={changeHandler}
-            checked={formData.checked}
-          />
-          <div>
-              <label htmlFor='comments'>Comments</label>
-              <p>Get notified when someones posts a comment on a posting.</p>
+          <br />
+          <div className='flex items-start gap-3'>
+            <input 
+              type='checkbox'
+              name='comments'
+              id='comments'
+              onChange={changeHandler}
+              checked={formData.checked}
+              className='mt-1'
+            />
+            <div>
+                <label htmlFor='comments'>Comments</label>
+                <p className='text-[#94959E] text-sm'>Get notified when someones posts a comment on a posting.</p>
+            </div>
+
+          </div>
+          
+          <div className='flex items-start gap-3'>
+
+            <input 
+              type='checkbox'
+              name='candidates'
+              id='candidates'
+              onChange={changeHandler}
+              checked={formData.candidates}
+              className='mt-1'
+            />
+            <div>
+                <label htmlFor='candidates'>Candidates</label>
+                <p className='text-[#94959E] text-sm'>Get notified when a candidate applies for a job.</p>
+            </div>
+
           </div>
 
-          <input 
-            type='checkbox'
-            name='candidates'
-            id='candidates'
-            onChange={changeHandler}
-            checked={formData.candidates}
-          />
-          <div>
-              <label htmlFor='candidates'>Candidates</label>
-              <p>Get notified when a candidate applies for a job.</p>
-          </div>
+          <div className='flex items-start gap-3'>
 
-          <input 
-            type='checkbox'
-            name='offers'
-            id='offers'
-            onChange={changeHandler}
-            checked={formData.offers}
-          />
-          <div>
-              <label htmlFor='offers'>Offers</label>
-              <p>Get notified when a candidate accepts or rejects an offer.</p>
+            <input 
+              type='checkbox'
+              name='offers'
+              id='offers'
+              onChange={changeHandler}
+              checked={formData.offers}
+              className='mt-1'
+            />
+            <div className='leading-5'>
+                <label htmlFor='offers'>Offers</label>
+                <p className='text-[#94959E] text-sm'>Get notified when a candidate accepts or rejects an offer.</p>
+            </div>
+
           </div>
 
       </fieldset>
 
       <br/>
-      <br/>
-      <fieldset>
+      <fieldset className=''>
         <legend>Push Notifications</legend>
-        <p>These are delivered via SMS to your mobile phone.</p>
+        <p className='text-[#94959E] text-sm'>These are delivered via SMS to your mobile phone.</p>
 
         <input
           type="radio"
@@ -198,6 +228,7 @@ function App() {
           name="pushNotifications"
           value="Everything"
           onChange={changeHandler}
+          className='mr-3'
         />
 
         <label htmlFor="pushEverything">Everything</label>
@@ -209,6 +240,7 @@ function App() {
           name="pushNotifications"
           value="Same as email"
           onChange={changeHandler}
+          className='mr-3'
         />
 
         <label htmlFor="pushEmail">Same as email</label>
@@ -220,13 +252,14 @@ function App() {
           name="pushNotifications"
           value="No Push Notifications"
           onChange={changeHandler}
+          className='mr-3'
         />
 
         <label htmlFor="pushNothing">No Push Notifications</label>
 
       </fieldset>
 
-      <button>
+      <button className="bg-blue-500 text-white font-bold rounded py-2 px-4 mt-2">
         Save
       </button>
 
